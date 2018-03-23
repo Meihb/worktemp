@@ -1,0 +1,215 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style media="screen">
+
+</style>
+<script type="text/javascript" src="http://static.sdg-china.com/copyright/js/base/jquery-1.7.2.min.js"></script>
+<script src="@Url.Content("~/Content/echarts/js/echarts.min.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/echarts/css/es.css")" rel="stylesheet" type="text/css" />
+
+<script src="@Url.Content("~/Content/timedate/jquery.jedate.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/timedate/skin/jedate.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="mbox">
+  <div class="mborder">
+    <div class="tit">总概况</div>
+    <p class="lookall" isshow='index'>预览</p>
+    <ul class="multop">
+      <li>
+        <p>昨日财务收入</p>
+        <p class="num">@ViewData["settle_price"]</p>
+        <p class="@ViewData["settle_price_icon"]"></p>
+      </li>
+      <li>
+        <p>昨日消耗金额</p>
+        <p class="num">@ViewData["amount"]</p>
+        <p class="@ViewData["amount_icon"]"></p>
+      </li>
+      <li>
+        <p>季度日均财务收入</p>
+        <p class="num">@ViewData["avg_quarter"]</p>
+        <p class="@ViewData["avg_quarter_icon"]"></p>
+      </li>
+      <li>
+        <p>高端用户消耗比例</p>
+        <p class="num">@ViewData["high_con_ret"]</p>
+        <p class="@ViewData["high_con_ret_icon"]"></p>
+      </li>
+      <li>
+        <p>昨日活跃用户（去小号）</p>
+        <p class="num">@ViewData["qxh_num"]</p>
+        <p class="@ViewData["qxh_num_icon"]"></p>
+      </li>
+      <li>
+        <p>昨日新增用户</p>
+        <p class="num">@ViewData["newlogin_num"]</p>
+        <p class="@ViewData["newlogin_num_icon"]"></p>
+      </li>
+      <li>
+        <p>高端活跃用户</p>
+        <p class="num">@ViewData["high_login"]</p>
+        <p class="@ViewData["high_login_icon"]"></p>
+      </li>
+      <li>
+        <p>流失7日高端用户</p>
+        <p class="num">@ViewData["lost_num"]</p>
+        <p class="@ViewData["lost_num_icon"]"></p>
+      </li>
+      <li>
+        <p>季度累计财务收入</p>
+        <p class="num">@ViewData["total_quarter"]</p>
+        <p class="@ViewData["total_quarter_icon"]"></p>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="mbox">
+  <div class="mborder">
+    <div class="msle" style="padding-left:20px;">
+      <select name="game" id="game">
+        <option selected="selected" value="4">传奇</option>
+      </select>
+      <select name="area" id="area">
+        <option selected="selected" value="0">全区全服</option>
+        <option value="181">181</option>
+        <option value="180">180</option>
+        <option value="179">179</option>
+        <option value="178">178</option>
+        <option value="177">177</option>
+        <option value="176">176</option>
+        <option value="175">175</option>
+        <option value="174">174</option>
+        <option value="173">173</option>
+        <option value="167to168">167to168</option>
+        <option value="155to164">155to164</option>
+        <option value="1to154">1to154</option>
+      </select>
+
+      <select name="timetype" id="timetype"></select>
+
+      <select name="timenum" id="timenum" style="display:none;"></select>
+
+      <div class="jdbox">
+        <div class="timerel timerel1">
+          <input class="datainp wicon" id="jdinpstart" type="text" placeholder="开始季度" value="" readonly>
+        </div>
+        <div class="timerel timerel2">
+          <input class="datainp wicon" id="jdinpend" type="text" placeholder="结束季度"  value="" readonly>
+        </div>
+      </div>
+      <div class="mmbox">
+        <div class="timerel timerel1">
+          <input class="datainp wicon" id="mminpstart" type="text" placeholder="开始月份" value="" readonly>
+        </div>
+        <div class="timerel timerel2">
+          <input class="datainp wicon" id="mminpend" type="text" placeholder="结束月份"  value="" readonly>
+        </div>
+      </div>
+      <div class="ddbox">
+        <div class="timerel timerel1">
+          <input class="datainp wicon" id="ddinpstart" type="text" placeholder="开始日期" value="" readonly>
+        </div>
+        <div class="timerel timerel2">
+          <input class="datainp wicon" id="ddinpend" type="text" placeholder="结束日期"  value="" readonly>
+        </div>
+      </div>
+      <div class="timeBtn" id="timeBtn">确认</div>
+    </div>
+  </div>
+</div>
+
+<div class="mbox">
+  <div class="mborder">
+    <div class="tit">趋势图</div>
+    <!-- 趋势图导航 -->
+    <div class="nav nav1">
+      <ul>
+        <li class="on">消耗金额</li>
+        <li>活跃用户</li>
+        <li>消耗用户</li>
+        <li>新增活跃及消耗用户</li>
+        <li>在线人数</li>
+        <li>流失7日用户</li>
+      </ul>
+    </div>
+    <!-- 图标数据 -->
+    <div id="tabmain" class="tabmain">
+
+    </div>
+    <!-- 图标数据 -->
+  </div>
+</div>
+
+<div class="mbox">
+  <div class="mborder m_lert">
+    <div class="tit_le">数据明细</div>
+    <div class="btn_rt" id="btn_export">导出</div>
+  </div>
+</div>
+
+<div class="mbox">
+  <div class="mborder">
+   @* <select name="game" class="datasele">
+      <option>日期</option>
+    </select>*@
+    <!-- 数据导航 -->
+@*    <div class="nav nav2" style="padding-left:25px;">
+      <ul>
+        <li class="on">时间</li>
+        <li>财务收入</li>
+        <li>消耗金额</li>
+        <li>活跃用户</li>
+        <li>活跃用户（去小号）</li>
+        <li>消耗用户</li>
+        <li>消耗用户（去小号）</li>
+        <li>新增活跃</li>
+        <li>新增消耗</li>
+        <li>平均在线</li>
+        <li>最高在线</li>
+        <li>流失7日用户</li>
+      </ul>
+    </div>*@
+    <table class="datatab" style="font-weight: bold; display:none;" cellpadding="0" cellspacing="0" id="datatab1">
+    <tr>
+    <td>时间</td>
+    <td>财务收入</td>
+    <td>消耗金额</td>
+    <td>活跃用户</td>
+    <td>活跃用户(去)</td>
+    <td>消耗用户</td>
+    <td>消耗用户(去)</td>
+    <td>新增活跃</td>
+    <td>新增消耗</td>
+    <td>平均在线</td>
+    <td>最高在线</td>
+    <td>流失7日用户</td>
+    </tr>
+    </table>
+    <table class="datatab" style="font-weight: bold; display:none;" cellpadding="0" cellspacing="0" id="datatab2">
+    <tr>
+    <td>时间</td>
+    <td>消耗金额</td>
+    <td>活跃用户</td>
+    <td>消耗用户</td>
+    <td>新增活跃</td>
+    <td>新增消耗</td>
+    <td>平均在线</td>
+    <td>最高在线</td>
+    <td>流失7日用户</td>
+    </tr>
+    </table>
+    <table id="datatab" class="datatab" cellpadding="0" cellspacing="0">
+    </table>
+  </div>
+</div>
+
+<div style="height:100px; width:100%;"></div>
+
+<script src="@Url.Content("~/Content/timedate/timedate.js")" type="text/javascript"></script>
+
+</body>
+</html>

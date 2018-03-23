@@ -1,0 +1,951 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "my project doc",
+        "description": "\u6e38\u620f\u6570\u636e\u8bc4\u4f30\u63a5\u53e3\u6587\u6863, V1.0<br>",
+        "version": "1.0"
+    },
+    "host": "assess.act.sdo.com:81",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/index.php/ExternalGameHeadcountEvaluation/getGameCondition": {
+            "get": {
+                "tags": [
+                    "ExternalGameHeadcountEvaluation"
+                ],
+                "summary": "\u83b7\u53d6\u6d41\u6c34\u9884\u4f30\u6761\u4ef6\u5217\u8868",
+                "description": "\u6e38\u620f\u540d\u79f0\u5217\u8868\u3001\u6e38\u620f\u7c7b\u578b\u5217\u8868\u3001\u662f\u5426\u6709ip,\u53d1\u884c\u5546\u5217\u8868",
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "$ref": "#/definitions/GameInfoDefination"
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/ExternalGameHeadcountEvaluation/evaluate": {
+            "get": {
+                "tags": [
+                    "ExternalGameHeadcountEvaluation"
+                ],
+                "summary": "\u9884\u4f30\u6d41\u6c34",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u540d\u79f0",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u7c7b\u578b",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ip",
+                        "in": "query",
+                        "description": "\u662f\u5426\u6709ip",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "distributor",
+                        "in": "query",
+                        "description": "\u53d1\u884c\u5546",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "average_kg_perday",
+                        "in": "query",
+                        "description": "\u8fd130\u5929\u65e5\u5747\u767e\u5ea6\u77e5\u8bc6",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "max_kg",
+                        "in": "query",
+                        "description": "\u5386\u53f2\u6700\u9ad8\u767e\u5ea6\u6307\u6570",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "min_kg",
+                        "in": "query",
+                        "description": "\u6700\u4f4e\u767e\u5ea6\u6307\u6570",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "cumulative_days",
+                        "in": "query",
+                        "description": "\u7d2f\u8ba1\u5929\u6570",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "properties": {
+                                "first_month_turnover": {
+                                    "description": "\u9996\u6708\u6d41\u6c34",
+                                    "type": "integer"
+                                },
+                                "third_month_turnover": {
+                                    "description": "\u4e09\u6708\u6d41\u6c34",
+                                    "type": "integer"
+                                },
+                                "six_month_turnover": {
+                                    "description": "\u534a\u5e74\u6d41\u6c34",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/GameDataOverview/getGameCondition": {
+            "get": {
+                "tags": [
+                    "GameDataOverview"
+                ],
+                "summary": "\u83b7\u53d6\u6e38\u620f\u6761\u4ef6\u8be6\u60c5",
+                "description": "\u6e38\u620f\u540d\u79f0\u5217\u8868\u3001\u6d4b\u8bd5\u8282\u70b9\u5217\u8868\u3001\u6d4b\u8bd5\u6027\u8d28\u5217\u8868,\u6d4b\u8bd5\u65f6\u95f4\u4e3a2013\u5e74\u81f3\u4eca",
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "$ref": "#/definitions/GameInfoDefination"
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/GameDataOverview/getGameData": {
+            "get": {
+                "tags": [
+                    "GameDataOverview"
+                ],
+                "summary": "\u7b5b\u9009\u6e38\u620f\u6570\u636e",
+                "description": "\u6839\u636e\u4e4b\u524d\u63a5\u53e3\u6761\u4ef6\u7b5b\u9009",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u540d\u79f0",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "\u6d4b\u8bd5\u65f6\u95f4",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "node",
+                        "in": "query",
+                        "description": "\u6d4b\u8bd5\u8282\u70b9",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "\u6d4b\u8bd5\u6027\u8d28",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "orderby",
+                        "in": "query",
+                        "description": "\u6392\u5e8f\u5b57\u6bb5",
+                        "required": false,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "export",
+                        "in": "query",
+                        "description": "\u5bfc\u51fa\u6807\u5fd7,true\u5bfc\u51faexcel,false\u8fd4\u56dejson\u6570\u636e",
+                        "required": false,
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "$ref": "#/definitions/GameDatas"
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/JapanGamesTurnoverEvaluation/getGameCondition": {
+            "get": {
+                "tags": [
+                    "JapanGamesTurnoverEvaluation"
+                ],
+                "summary": "\u83b7\u53d6\u6d41\u6c34\u9884\u4f30\u6761\u4ef6\u5217\u8868",
+                "description": "\u6e38\u620f\u540d\u79f0\u5217\u8868\u3001\u6e38\u620f\u7c7b\u578b\u5217\u8868\u3001\u662f\u5426\u6709ip,\u53d1\u884c\u5546\u5217\u8868",
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "$ref": "#/definitions/GameInfoDefination"
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/RetentionEvaluationModel/getGameCondition": {
+            "get": {
+                "tags": [
+                    "RetentionEvaluationModel"
+                ],
+                "summary": "\u83b7\u53d6\u7559\u5b58\u7387\u8bc4\u4f30\u6761\u4ef6",
+                "description": "\u6e38\u620f\u540d\u79f0\u5217\u8868\u3001\u6e38\u620f\u7c7b\u578b\u5217\u8868\u3001\u6d4b\u8bd5\u6027\u8d28\u5217\u8868,\u662f\u5426\u6709IP",
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "$ref": "#/definitions/GameInfoDefination"
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/RetentionEvaluationModel/evaluate": {
+            "get": {
+                "tags": [
+                    "RetentionEvaluationModel"
+                ],
+                "summary": "\u7559\u5b58\u7387\u8bc4\u4f30",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u540d\u79f0",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u7c7b\u578b",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "\u6d4b\u8bd5\u6027\u8d28",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ip",
+                        "in": "query",
+                        "description": "\u662f\u5426\u6709ip",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "scale",
+                        "in": "query",
+                        "description": "\u7528\u6237\u89c4\u6a21",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "1dayret",
+                        "in": "query",
+                        "description": "\u6b21\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "3dayret",
+                        "in": "query",
+                        "description": "3\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "7dayret",
+                        "in": "query",
+                        "description": "7\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "ltv",
+                        "in": "query",
+                        "description": "LTV",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "properties": {
+                                "class": {
+                                    "description": "\u7b49\u7ea7",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/TurnoverEvaluateModel/getGameCondition": {
+            "get": {
+                "tags": [
+                    "TurnoverEvaluationModel"
+                ],
+                "summary": "\u83b7\u53d6\u6d41\u6c34\u9884\u4f30\u6761\u4ef6\u5217\u8868",
+                "description": "\u6e38\u620f\u540d\u79f0\u5217\u8868\u3001\u6e38\u620f\u7c7b\u578b\u5217\u8868\u3001\u662f\u5426\u6709ip",
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "$ref": "#/definitions/GameInfoDefination"
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/TurnoverEvaluateModel/currentEvaluate": {
+            "get": {
+                "tags": [
+                    "TurnoverEvaluationModel"
+                ],
+                "summary": "\u9884\u4f30\u6d41\u6c34",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u540d\u79f0",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u7c7b\u578b",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ip",
+                        "in": "query",
+                        "description": "\u662f\u5426\u6709ip",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "market_cost",
+                        "in": "query",
+                        "description": "\u5e02\u573a\u8d39\u91d1\u989d",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "estimated_quantity",
+                        "in": "query",
+                        "description": "\u9884\u5b9a\u91cf",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "1dayret",
+                        "in": "query",
+                        "description": "\u6b21\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "7dayret",
+                        "in": "query",
+                        "description": "7\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "30dayret",
+                        "in": "query",
+                        "description": "30\u65e5\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "7dayltv",
+                        "in": "query",
+                        "description": "7\u5929LTV",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "arpu",
+                        "in": "query",
+                        "description": "ARPV",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "modified_scale",
+                        "in": "query",
+                        "description": "\u4fee\u6539\u540e\u7684\u7528\u6237\u89c4\u6a21",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "properties": {
+                                "first_month_turnover": {
+                                    "description": "\u9996\u6708\u6d41\u6c34",
+                                    "type": "integer"
+                                },
+                                "third_month_turnover": {
+                                    "description": "\u4e09\u6708\u6d41\u6c34",
+                                    "type": "integer"
+                                },
+                                "six_month_turnover": {
+                                    "description": "\u534a\u5e74\u6d41\u6c34",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/TurnoverEvaluateModel/profitRateEvaluate": {
+            "get": {
+                "tags": [
+                    "TurnoverEvaluationModel"
+                ],
+                "summary": "\u9884\u4f30\u5229\u6da6\u7387",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u540d\u79f0",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u7c7b\u578b",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ip",
+                        "in": "query",
+                        "description": "\u662f\u5426\u6709ip",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "turnover",
+                        "in": "query",
+                        "description": "\u6d41\u6c34",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "copyright_fee",
+                        "in": "query",
+                        "description": "\u7248\u6743\u91d1",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "agent_share",
+                        "in": "query",
+                        "description": "\u4ee3\u7406\u5206\u6210",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "dev_share",
+                        "in": "query",
+                        "description": "\u7814\u53d1\u5206\u6210",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "ios_income_ratio",
+                        "in": "query",
+                        "description": "ios\u6536\u5165\u6bd4\u4f8b",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "android_income_ratio",
+                        "in": "query",
+                        "description": "\u5b89\u5353\u6e20\u9053\u6536\u5165\u6bd4\u4f8b",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "gplus_income_ratio",
+                        "in": "query",
+                        "description": "\u5b98\u65b9G+\u6536\u5165\u6bd4\u4f8b",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "idc_cost",
+                        "in": "query",
+                        "description": "IDC\u6210\u672c",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "headcount",
+                        "in": "query",
+                        "description": "\u4eba\u5458\u6570\u91cf",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "properties": {
+                                "first_month_profit_ration": {
+                                    "description": "\u4e00\u4e2a\u6708\u5229\u6da6\u7387",
+                                    "type": "integer"
+                                },
+                                "six_month_profit_ration": {
+                                    "description": "\u534a\u5e74\u5229\u6da6\u7387",
+                                    "type": "integer"
+                                },
+                                "first_year_profit_ration": {
+                                    "description": "\u4e00\u5e74\u5229\u6da6\u7387",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/TurnoverEvaluateModel/marketFeeEvaluate": {
+            "get": {
+                "tags": [
+                    "TurnoverEvaluationModel"
+                ],
+                "summary": "\u9884\u4f30\u6700\u6709\u5e02\u573a\u8d39\u91d1\u989d",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u540d\u79f0",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u7c7b\u578b",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ip",
+                        "in": "query",
+                        "description": "\u662f\u5426\u6709ip",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "estimated_quantity",
+                        "in": "query",
+                        "description": "\u9884\u5b9a\u91cf",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "1dayret",
+                        "in": "query",
+                        "description": "\u6b21\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "7dayret",
+                        "in": "query",
+                        "description": "7\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "30dayret",
+                        "in": "query",
+                        "description": "30\u65e5\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "7dayltv",
+                        "in": "query",
+                        "description": "7\u5929LTV",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "arpu",
+                        "in": "query",
+                        "description": "ARPV",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "properties": {
+                                "efficiency_market_fee": {
+                                    "description": "\u6700\u4f18\u5e02\u573a\u8d39",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/UserScaleModel/getGameCondition": {
+            "get": {
+                "tags": [
+                    "UserScaleModel"
+                ],
+                "summary": "\u83b7\u53d6\u6e38\u620f\u6761\u4ef6\u8be6\u60c5",
+                "description": "\u6e38\u620f\u540d\u79f0\u5217\u8868\u3001\u6d4b\u8bd5\u8282\u70b9\u5217\u8868\u3001\u6d4b\u8bd5\u6027\u8d28\u5217\u8868,\u6d4b\u8bd5\u65f6\u95f4\u4e3a2013\u5e74\u81f3\u4eca",
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "$ref": "#/definitions/GameInfoDefination"
+                        }
+                    }
+                }
+            }
+        },
+        "/index.php/UserScaleModel/evaluate": {
+            "get": {
+                "tags": [
+                    "UserScaleModel"
+                ],
+                "summary": "\u9884\u4f30\u7528\u6237\u6a21\u578b",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u540d\u79f0",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "\u6e38\u620f\u7c7b\u578b",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "\u6d4b\u8bd5\u6027\u8d28",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ip",
+                        "in": "query",
+                        "description": "\u662f\u5426\u6709ip",
+                        "required": false,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "scale",
+                        "in": "query",
+                        "description": "\u7528\u6237\u89c4\u6a21",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "1dayret",
+                        "in": "query",
+                        "description": "\u6b21\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "3dayret",
+                        "in": "query",
+                        "description": "3\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "7dayret",
+                        "in": "query",
+                        "description": "7\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "30dayret",
+                        "in": "query",
+                        "description": "30\u65e5\u7559",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "1dayltv",
+                        "in": "query",
+                        "description": "\u4e00\u5929LTV",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "7dayltv",
+                        "in": "query",
+                        "description": "7\u5929LTV",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "30dayltv",
+                        "in": "query",
+                        "description": "30\u5929LTV",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "modified_scale",
+                        "in": "query",
+                        "description": "\u4fee\u6539\u540e\u7684\u7528\u6237\u89c4\u6a21",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "\u64cd\u4f5c\u6210\u529f",
+                        "schema": {
+                            "properties": {
+                                "UserScale": {
+                                    "description": "\u7528\u6237\u89c4\u6a21",
+                                    "type": "integer"
+                                },
+                                "first_day_ret": {
+                                    "description": "\u6b21\u7559",
+                                    "type": "number"
+                                },
+                                "third_day_ret": {
+                                    "description": "3\u7559",
+                                    "type": "number"
+                                },
+                                "seven_day_ret": {
+                                    "description": "7\u7559",
+                                    "type": "number"
+                                },
+                                "thirty_day_ret": {
+                                    "description": "30\u7559",
+                                    "type": "number"
+                                },
+                                "first_day_ltv": {
+                                    "description": "1\u5929LTV",
+                                    "type": "number"
+                                },
+                                "seven_day_ltv": {
+                                    "description": "7\u5929LTV",
+                                    "type": "number"
+                                },
+                                "thirty_day_ltv": {
+                                    "description": "30\u5929LTV",
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "GameInfoDefination": {
+            "properties": {
+                "nameList": {
+                    "description": "\u6e38\u620f\u540d\u79f0\u5217\u8868",
+                    "type": "array",
+                    "items": {
+                        "description": "\u6e38\u620f\u540d\u79f0",
+                        "type": "string"
+                    }
+                },
+                "typeList": {
+                    "description": "\u6e38\u620f\u7c7b\u578b\u5217\u8868",
+                    "type": "array",
+                    "items": {
+                        "description": "\u6e38\u620f\u7c7b\u578b",
+                        "type": "string"
+                    }
+                },
+                "testNodeList": {
+                    "description": "\u6d4b\u8bd5\u8282\u70b9\u5217\u8868",
+                    "type": "array",
+                    "items": {
+                        "description": "\u6d4b\u8bd5\u8282\u70b9\u540d\u79f0",
+                        "type": "string"
+                    }
+                },
+                "limitTypeList": {
+                    "description": "\u6d4b\u8bd5\u6027\u8d28\u5217\u8868",
+                    "type": "array",
+                    "items": {
+                        "description": "\u6d4b\u8bd5\u6027\u8d28",
+                        "type": "string"
+                    }
+                },
+                "IPList": {
+                    "description": "IP\u9009\u9879\u5217\u8868",
+                    "type": "array",
+                    "items": {
+                        "description": "ip\u9009\u9879",
+                        "type": "string"
+                    }
+                },
+                "Distributor": {
+                    "description": "\u53d1\u884c\u5546\u5217\u8868",
+                    "type": "array",
+                    "items": {
+                        "description": "\u53d1\u884c\u5546",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "GameData": {
+            "properties": {
+                "name": {
+                    "description": "\u6e38\u620f\u540d\u79f0",
+                    "type": "string"
+                },
+                "year": {
+                    "description": "\u6d4b\u8bd5\u65f6\u95f4",
+                    "type": "string"
+                },
+                "node": {
+                    "description": "\u6d4b\u8bd5\u8282\u70b9",
+                    "type": "string"
+                },
+                "limit": {
+                    "description": "\u662f\u5426\u9650\u91cf",
+                    "type": "string"
+                },
+                "first_week_scale": {
+                    "description": "\u9996\u5468\u7528\u6237\u89c4\u6a21",
+                    "type": "integer"
+                },
+                "first_dat_retention": {
+                    "description": "\u6b21\u7559",
+                    "type": "float"
+                },
+                "third_day_retention": {
+                    "description": "3\u7559",
+                    "type": "float"
+                },
+                "seven_day_retention": {
+                    "description": "7\u7559",
+                    "type": "float"
+                },
+                "payment_ratio": {
+                    "description": "\u4ed8\u8d39\u7387",
+                    "type": "float"
+                },
+                "arrpu": {
+                    "description": "\u5e73\u5747\u6bcf\u4ed8\u8d39\u7528\u6237\u6536\u5165",
+                    "type": "float"
+                },
+                "arpu": {
+                    "description": "\u5e73\u5747\u6bcf\u7528\u6237\u6536\u5165",
+                    "type": "float"
+                },
+                "firsy_month_turnover": {
+                    "description": "\u9996\u6708\u6d41\u6c34",
+                    "type": "float"
+                },
+                "third_month_turnover": {
+                    "description": "\u4e09\u6708\u6d41\u6c34",
+                    "type": "integer"
+                }
+            }
+        },
+        "GameDatas": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/GameData"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "GameDataOverview",
+            "description": "\u6e38\u620f\u6570\u636e\u6982\u89c8"
+        },
+        {
+            "name": "RetentionEvaluationModel",
+            "description": "\u7559\u5b58\u7387\u8bc4\u4f30\u6a21\u578b"
+        },
+        {
+            "name": "TurnoverEvaluationModel",
+            "description": "\u6d41\u6c34\u9884\u4f30\u6a21\u578b"
+        },
+        {
+            "name": "UserScaleModel",
+            "description": "\u7528\u6237\u89c4\u6a21\u6a21\u578b"
+        },
+        {
+            "name": "JapanGamesTurnoverEvaluation",
+            "description": "\u65e5\u672c\u6e38\u620f\u6d41\u6c34\u9884\u4f30"
+        },
+        {
+            "name": "ExternalGameHeadcountEvaluation",
+            "description": "\u5916\u90e8\u6e38\u620f\u4eba\u6570\u9884\u4f30"
+        }
+    ]
+}
