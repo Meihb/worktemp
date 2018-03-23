@@ -14,6 +14,12 @@
 
 class GameDataOverview extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        @session_start();
+    }
+
     public function index()
     {
         $data['init'] = $this->getGameCondition(true);
@@ -22,7 +28,12 @@ class GameDataOverview extends CI_Controller
 
     public function sysindex()
     {
-        $this->load->view('system\Index');
+        if (!$_SESSION['UID']) {
+            header("Location: ../index.php?/Log/userLogin");
+        }else{
+            $this->load->view('system\Index');
+        }
+
     }
 
     public function indexv2()
@@ -290,8 +301,8 @@ class GameDataOverview extends CI_Controller
                     , isset(GameInfoDefination::$testNodeList[(int)$value['node']]) ? GameInfoDefination::$testNodeList[(int)$value['node']] : "无数据"];
             }
             if (isset($value['limit'])) {
-                $value['limit'] = [$value['limit'] ,
-                isset(GameInfoDefination::$limitTypeList[(int)$value['limit']]) ? GameInfoDefination::$limitTypeList[(int)$value['limit']] : '无数据'];
+                $value['limit'] = [$value['limit'],
+                    isset(GameInfoDefination::$limitTypeList[(int)$value['limit']]) ? GameInfoDefination::$limitTypeList[(int)$value['limit']] : '无数据'];
 
             }
 

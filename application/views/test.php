@@ -1,110 +1,24 @@
-<html lang="en">
-<body>
-<div class="table-head">
-    <table>
-        <colgroup>
-            <!--<col style="width: 80px;"/>-->
-            <!--<col/>-->
-        </colgroup>
-        <thead>
-        <tr>
-            <th>序号</th>
-            <th>内容</th>
-        </tr>
-        </thead>
-    </table>
-</div>
-<div class="table-body">
-    <table>
-        <colgroup>
-            <!--<col style="width: 80px;"/>-->
-            <!--<col/>-->
-        </colgroup>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>11</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>12</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>13</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>14</td>
-            <td>我只是用来测试的</td>
-        </tr>
-        <tr>
-            <td>15</td>
-            <td>我只是用来测试的</td>
-        </tr>
-
-        </tbody>
-    </table>
-</div>
-</body>
-<style>
-    .table-head {
-        padding-right: 17px;
-        background-color: #999;
-        color: #000;
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js">></script>
+<script type="text/javascript">
+    function sub() {
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: "/index.php?/Log/logIn",
+            data: $('#formId').serialize(),// 你的formid
+            async: false,
+            error: function (request) {
+                alert("Connection error:" + request.error);
+            },
+            success: function (data) {
+                alert("SUCCESS!");
+            }
+        });
     }
-
-    .table-body {
-        width: 100%;
-        height: 300px;
-        overflow-y: scroll;
-    }
-
-    .table-head table, .table-body table {
-        width: 100%;
-    }
-
-    .table-body table tr:nth-child(2n+1) {
-        background-color: #f2f2f2;
-    }
-</style>
-</html>
+</script>
+<form id="formId" action="/index.php?/Log/logIn" method="post" onsubmit="return sub();">
+    <input id="input1"/>
+    <input id="input2"/>
+    <input id="input3"/>
+    <input type="button" value="提 交" onclick="sub()"/>
+</form>

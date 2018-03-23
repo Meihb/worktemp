@@ -27,10 +27,11 @@
     <div class="top_link">
         <ul>
             <!--            <li class="welcome">欢迎您,@Session["CurrentUser_report"] </li>-->
-            <li class="welcome">欢迎您,<?php echo isset($_SESSION['CurrentUser_report'])?$_SERVER['CurrentUser_report']:'用户' ?> </li>
+            <li class="welcome">欢迎您,<?php echo isset($_SESSION['NAME'])?$_SESSION['NAME']:'用户' ?> </li>
 
             <li class="menuact"><a href="#" id="togglemenu">[隐藏菜单]</a></li>
-            <li><a href="/cq/Author/Logout" target="_top">[退出]</a></li>
+<!--            <li><a href="/cq/Author/Logout" target="_top">[退出]</a></li>-->
+            <li><a href="/index.php?/log/logOut" target="_top">[退出]</a></li>
         </ul>
         <!--
 		<div class="quick">
@@ -66,7 +67,7 @@
                 <dd>
                     <ul>
                         <li><a href="/index.php?/RetentionEvaluationModel/index" target="main">游戏等级评估</a></li>
-                        <li><a href="/index.php?/RetentionEvaluationModel/getNDRRPage" target="main">次留预测</a></li>
+                        <li><a href="/index.php?/RetentionEvaluationModel/getNDRRPage" target="main">次留评估</a></li>
                     </ul>
                 </dd>
             </dl>
